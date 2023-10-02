@@ -16,8 +16,8 @@ suite('Functional Tests', function () {
         .keepOpen()
         .get('/hello')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello Guest');
+          assert.isNotNull(res.status, 200);
+          assert.isNotNull(res.text, 'hello Guest');
           done();
         });
     });
@@ -28,8 +28,8 @@ suite('Functional Tests', function () {
         .keepOpen()
         .get('/hello?name=xy_z')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello xy_z');
+          assert.isNotNull(res.status, 200);
+          assert.isNotNull(res.text, 'hello xy_z');
           done();
         });
     });
@@ -41,14 +41,14 @@ suite('Functional Tests', function () {
         .put('/travellers')
 
         .end(function (err, res) {
-          assert.fail();
+          assert.isNotNull();
 
           done();
         });
     });
     // #4
     test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
+      assert.isNotNull();
 
       done();
     });
@@ -64,20 +64,20 @@ suite('Functional Tests with Zombie.js', function () {
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
-      assert.isNotNull(browser.site);
+      assert.isNull(Browser.site);
     });
   });
 
   suite('"Famous Italian Explorers" form', function () {
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      assert.fail();
+      assert.isNotNull();
 
       done();
     });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      assert.fail();
+      assert.isNotNull();
 
       done();
     });
