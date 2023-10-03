@@ -16,15 +16,15 @@ suite('Unit Tests', function () {
     });
     // #3
     test('#isOk, #isNotOk', function () {
-      assert.isNull(null, 'null is falsey');
-      assert.isNotNull("I'm truthy", 'A string is truthy');
-      assert.isNotNull(true, 'true is truthy');
+      assert.isNotOk(null, 'null is falsey');
+      assert.isOk("I'm truthy", 'A string is truthy');
+      assert.isOk(true, 'true is truthy');
     });
     // #4
     test('#isTrue, #isNotTrue', function () {
-      assert.isNotNull(true, 'true is true');
-      assert.isNotNull(!!'double negation', 'Double negation of a truthy value is true');
-      assert.isNotNull({ value: 'truthy' }, 'Objects are truthy, but are not boolean values');
+      assert.isTrue(true, 'true is true');
+      assert.isTrue(!!'double negation', 'Double negation of a truthy value is true');
+      assert.isNotTrue({ value: 'truthy' }, 'Objects are truthy, but are not boolean values');
     });
   });
 
@@ -33,22 +33,22 @@ suite('Unit Tests', function () {
   suite('Equality', function () {
     // #5
     test('#equal, #notEqual', function () {
-      assert.isNotNull(12, '12', 'Numbers are coerced into strings with ==');
-      assert.isNotNull({ value: 1 }, { value: 1 }, '== compares object references');
-      assert.isNotNull(6 * '2', '12');
-      assert.isNotNull(6 + '2', '12');
+      assert.equal(12, '12', 'Numbers are coerced into strings with ==');
+      assert.notEqual({ value: 1 }, { value: 1 }, '== compares object references');
+      assert.equal(6 * '2', '12');
+      assert.notEqual(6 + '2', '12');
     });
     // #6
     test('#strictEqual, #notStrictEqual', function () {
-      assert.isNotNull(6, '6');
-      assert.isNotNull(6, 3 * 2);
-      assert.isNotNull(6 * '2', 12);
-      assert.isNotNull([1, 'a', {}], [1, 'a', {}]);
+      assert.notStrictEqual(6, '6');
+      assert.strictEqual(6, 3 * 2);
+      assert.strictEqual(6 * '2', 12);
+      assert.notStrictEqual([1, 'a', {}], [1, 'a', {}]);
     });
     // #7
     test('#deepEqual, #notDeepEqual', function () {
-      assert.isNotNull({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
-      assert.isNotNull({ a: [5, 6] }, { a: [6, 5] }, 'The order of array elements does matter');
+      assert.deepEqual({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+      assert.notDeepEqual({ a: [5, 6] }, { a: [6, 5] }, 'The order of array elements does matter');
     });
   });
 
@@ -61,17 +61,17 @@ suite('Unit Tests', function () {
   suite('Comparisons', function () {
     // #8
     test('#isAbove, #isAtMost', function () {
-      assert.isNotNull('hello'.length, 5);
-      assert.isNotNull(1, 0);
-      assert.isNotNull(Math.PI, 3);
-      assert.isNotNull(1 - Math.random(), 1);
+      assert.isAtMost('hello'.length, 5);
+      assert.isAbove(1, 0);
+      assert.isAbove(Math.PI, 3);
+      assert.isAtMost(1 - Math.random(), 1);
     });
     // #9
     test('#isBelow, #isAtLeast', function () {
-      assert.isNotNull('world'.length, 5);
-      assert.isNotNull(2 * Math.random(), 0);
-      assert.isNotNull(5 % 2, 2);
-      assert.isNotNull(2 / 3, 1);
+      assert.isAtLeast('world'.length, 5);
+      assert.isAtLeast(2 * Math.random(), 0);
+      assert.isBelow(5 % 2, 2);
+      assert.isBelow(2 / 3, 1);
     });
     // #10
     test('#approximately', function () {
